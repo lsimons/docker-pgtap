@@ -2,7 +2,7 @@ FROM alpine:3.5
 MAINTAINER Andreas Wålm <andreas@walm.net>
 MAINTAINER Ludovic Claude <ludovic.claude@laposte.net>
 
-RUN apk update && apk add bash curl git postgresql-dev build-base make perl perl-dev
+RUN apk update && apk add bash curl git postgresql-client postgresql-dev build-base make perl perl-dev
 
 # install pg_prove
 RUN cpan TAP::Parser::SourceHandler::pgTAP
