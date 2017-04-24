@@ -8,7 +8,7 @@ RUN apk update && apk add bash curl git postgresql-dev build-base make perl perl
 RUN cpan TAP::Parser::SourceHandler::pgTAP
 
 # install pgtap
-ENV PGTAP_VERSION v0.90.0
+ENV PGTAP_VERSION v0.96.0
 RUN git clone git://github.com/theory/pgtap.git \
     && cd pgtap && git checkout tags/$PGTAP_VERSION \
     && make
