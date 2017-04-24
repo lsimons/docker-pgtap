@@ -34,7 +34,7 @@ then fill the database with tables and data, using something you want to test.
 ### Execute the tests
 
 ```console
-$ docker run -i -t --rm --name pgtap --link db-under-test:db -v /local/folder/with/tests/:/test -d lren/pgtap:0.96.0 -h db -p 5432 -u username -w password -d database -t '/test/*.sql'
+$ docker run -i -t --rm --name pgtap --link db-under-test:db -v /local/folder/with/tests/:/test lren/pgtap:0.96.0 -h db -p 5432 -u username -w password -d database -t '/test/*.sql'
 ```
 
 ## Build
