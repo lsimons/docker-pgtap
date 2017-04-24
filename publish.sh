@@ -36,6 +36,9 @@ fi
 select_part() {
   local choice=$1
   case "$choice" in
+      "Package release")
+          bumpversion package
+          ;;
       "Path release")
           bumpversion patch
           ;;
@@ -62,7 +65,7 @@ git pull --tags
   echo
   echo 'What do you want to release?'
   PS3='Select the version increment> '
-  options=("Path release" "Minor release" "Major release" "Release with a custom version")
+  options=("Package release" "Path release" "Minor release" "Major release" "Release with a custom version")
   select choice in "${options[@]}";
   do
     select_part "$choice"
