@@ -36,19 +36,10 @@ fi
 select_part() {
   local choice=$1
   case "$choice" in
-      "Postgres Patch release")
-          bumpversion pg_patch
-          ;;
-      "Postgres Minor release")
-          bumpversion pg_minor
-          ;;
-      "Postgres Major release")
-          bumpversion pg_major
-          ;;
-      "pgTAP Minor release")
+      "Minor release")
           bumpversion minor
           ;;
-      "pgTAP Major release")
+      "Major release")
           bumpversion major
           ;;
       *)
@@ -68,7 +59,7 @@ git pull --tags
   echo
   echo 'What do you want to release?'
   PS3='Select the version increment> '
-  options=("Postgres Patch release", "Postgres Minor release", "Postgres Major release", "pgTAP Minor release" "pgTAP Major release" "Release with a custom version")
+  options=("Minor release" "Major release" "Release with a custom version")
   select choice in "${options[@]}";
   do
     select_part "$choice"
