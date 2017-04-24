@@ -1,0 +1,7 @@
+flyway:
+  build: Dockerfile
+  image: lren/pgtap
+  pre:
+    - echo "Preparing pgtap"
+  post:
+    - echo "Finished building pgtap"

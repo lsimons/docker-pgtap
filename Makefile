@@ -1,4 +1,4 @@
-NAME = walm/pgtap:0.95.0
+NAME = lren/pgtap:0.90
 
 all: build
 
