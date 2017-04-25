@@ -2,6 +2,9 @@ FROM alpine:3.5
 MAINTAINER Andreas Wålm <andreas@walm.net>
 MAINTAINER Ludovic Claude <ludovic.claude@laposte.net>
 
+ARG BUILD_DATE
+ARG VCS_REF
+
 RUN apk update && apk add bash curl openssl ca-certificates git postgresql-client postgresql-dev build-base make perl perl-dev && update-ca-certificates
 
 # install dockerize
@@ -39,7 +42,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
     org.label-schema.description="pgTAP - Unit testing for PostgreSQL" \
     org.label-schema.url="https://github.com/LREN-CHUV/docker-pgtap" \
     org.label-schema.vcs-type="git" \
-    #org.label-schema.vcs-ref=$VCS_REF \
+    org.label-schema.vcs-ref=$VCS_REF \
     org.label-schema.vcs-url="https://github.com/LREN-CHUV/docker-pgtap" \
     org.label-schema.vendor="CHUV LREN" \
     org.label-schema.docker.dockerfile="Dockerfile" \

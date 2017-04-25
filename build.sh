@@ -7,4 +7,4 @@ else
   CAPTAIN="sudo captain"
 fi
 
-BUILD_DATE=$(date --iso-8601=seconds) $CAPTAIN build
+BUILD_DATE=$(date --iso-8601=seconds) VCS_REF=$(git describe --tags --dirty) $CAPTAIN build
