@@ -2,7 +2,13 @@ FROM alpine:3.5
 MAINTAINER Andreas Wålm <andreas@walm.net>
 MAINTAINER Ludovic Claude <ludovic.claude@laposte.net>
 
-RUN apk update && apk add bash curl git postgresql-client postgresql-dev build-base make perl perl-dev
+RUN apk update && apk add bash curl openssl ca-certificates git postgresql-client postgresql-dev build-base make perl perl-dev && update-ca-certificates
+
+# install dockerize
+ENV DOCKERIZE_VERSION=v0.4.0
+RUN wget -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz \
+    && tar -C /usr/local/bin -xzvf /tmp/dockerize.tar.gz \
+    && rm /tmp/dockerize.tar.gz
 
 # install pg_prove
 RUN cpan TAP::Parser::SourceHandler::pgTAP
@@ -17,6 +23,13 @@ COPY docker/test.sh /test.sh
 RUN chmod +x /test.sh
 
 WORKDIR /
+
+ENV DATABASE="" \
+    HOST=db \
+    PORT=5432 \
+    USER="postgres" \
+    PASSWORD="" \
+    TESTS="/test/*.sql"
 
 ENTRYPOINT ["/test.sh"]
 CMD [""]

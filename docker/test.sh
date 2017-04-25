@@ -1,12 +1,6 @@
 #!/bin/bash
-DATABASE=
-HOST=
-PORT=5432
-USER="postgres"
-PASSWORD=
-TESTS="/t/*.sql"
 
-function usage() { echo "Usage: $0 -h host -d database -p port -u username -w password -t tests" 1>&2; exit 1; }
+function usage() { echo "Usage: $0 -h host -d database -p port -u username -w password -t 'tests/*.sql'" 1>&2; exit 1; }
 
 while getopts d:h:p:u:w:b:n:t: OPTION
 do
@@ -29,17 +23,15 @@ do
     t)
       TESTS=$OPTARG
       ;;
-    *)
+    H)
       usage
       ;;
   esac
 done
 
-if [[ -z $DATABASE ]] || [[ -z $HOST ]] || [[ -z $PORT ]] || [[ -z $USER ]] || [[ -z $TESTS ]]
-then
-  usage
-  exit 1
-fi
+echo "Waiting for database..."
+dockerize -timeout 240s -wait tcp://$HOST:$PORT
+echo
 
 echo "Running tests: $TESTS"
 # install pgtap
