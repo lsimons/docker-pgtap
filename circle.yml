@@ -8,15 +8,15 @@ dependencies:
   override:
     - docker version
     - docker info
-    - docker build --rm=false -t lren/pgtap:0.96.0-0 .
+    - docker build --rm=false -t lren/pgtap:0.96.0-1 .
 
 test:
   override:
-    - docker run -i -t lren/pgtap:0.96.0-0 "" || true
+    - docker run -i -t lren/pgtap:0.96.0-1 "" || true
 
 #deployment:
 #  hub:
 #    branch: master
 #    commands:
 #      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-#      - docker push lren/pgtap:0.96.0-0
+#      - docker push lren/pgtap:0.96.0-1
