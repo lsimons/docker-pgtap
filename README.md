@@ -1,4 +1,4 @@
-[![CHUV](https://img.shields.io/badge/CHUV-LREN-AF4C64.svg)](https://www.unil.ch/lren/en/home.html) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/LREN-CHUV/docker-pgtap/blob/master/LICENSE) [![DockerHub](https://img.shields.io/badge/docker-lren%2Fpgtap-008bb8.svg)](https://hub.docker.com/r/lren/pgtap/) [![CircleCI](https://circleci.com/gh/LREN-CHUV/docker-pgtap/tree/master.svg?style=svg)](https://circleci.com/gh/LREN-CHUV/docker-pgtap/tree/master) [![ImageVersion](https://images.microbadger.com/badges/version/lren/pgtap.svg)](https://hub.docker.com/r/lren/pgtap/tags "lren/pgtap image tags") [![ImageLayers](https://images.microbadger.com/badges/image/lren/pgtap.svg)](https://microbadger.com/#/images/lren/pgtap "lren/pgtap on microbadger")
+[![CHUV](https://img.shields.io/badge/CHUV-LREN-AF4C64.svg)](https://www.unil.ch/lren/en/home.html) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/LREN-CHUV/docker-pgtap/blob/master/LICENSE) [![DockerHub](https://img.shields.io/badge/docker-hbpmip%2Fpgtap-008bb8.svg)](https://hub.docker.com/r/hbpmip/pgtap/) [![CircleCI](https://circleci.com/gh/LREN-CHUV/docker-pgtap/tree/master.svg?style=svg)](https://circleci.com/gh/LREN-CHUV/docker-pgtap/tree/master) [![ImageVersion](https://images.microbadger.com/badges/version/hbpmip/pgtap.svg)](https://hub.docker.com/r/hbpmip/pgtap/tags "hbpmip/pgtap image tags") [![ImageLayers](https://images.microbadger.com/badges/image/hbpmip/pgtap.svg)](https://microbadger.com/#/images/hbpmip/pgtap "hbpmip/pgtap on microbadger")
 
 # docker-pgtap
 
@@ -14,11 +14,11 @@ From: [pgTAP: Unit testing for PostgreSQL](http://pgtap.org/)
 
 ## Install
 
-This docker image is available as an automated build on [the docker registry hub](https://registry.hub.docker.com/u/lren/pgtap/), so using it is as simple as running:
+This docker image is available as an automated build on [the docker registry hub](https://registry.hub.docker.com/u/hbpmip/pgtap/), so using it is as simple as running:
 
 
 ```console
-$ docker run lren/pgtap:0.96.0-2
+$ docker run hbpmip/pgtap:0.96.0-2
 ```
 
 ## How to use this image
@@ -33,7 +33,7 @@ then fill the database with tables and data, using something you want to test.
 ### Execute the tests
 
 ```console
-$ docker run -i -t --rm --name pgtap --link db-under-test:db -e PASSWORD=postgres -v /local/folder/with/tests/:/test lren/pgtap:0.96.0-2
+$ docker run -i -t --rm --name pgtap --link db-under-test:db -e PASSWORD=postgres -v /local/folder/with/tests/:/test hbpmip/pgtap:0.96.0-2
 ```
 
 Environment variables:

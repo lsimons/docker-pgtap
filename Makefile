@@ -1,4 +1,4 @@
-NAME = lren/pgtap:0.90.0
+NAME = hbpmip/pgtap:0.90.0
 
 all: build
 

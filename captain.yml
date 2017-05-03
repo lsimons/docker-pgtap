@@ -1,6 +1,6 @@
 pgtap:
   build: Dockerfile
-  image: lren/pgtap
+  image: hbpmip/pgtap
   pre:
     - echo "Preparing pgtap"
   post:
