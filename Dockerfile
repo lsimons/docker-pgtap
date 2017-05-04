@@ -1,6 +1,6 @@
 FROM alpine:3.5
 MAINTAINER Andreas Wålm <andreas@walm.net>
-MAINTAINER Ludovic Claude <ludovic.claude@laposte.net>
+MAINTAINER Ludovic Claude <ludovic.claude@chuv.ch>
 
 ARG BUILD_DATE
 ARG VCS_REF
