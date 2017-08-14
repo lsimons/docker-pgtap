@@ -19,7 +19,7 @@ RUN apk update && apk add bash curl openssl ca-certificates git postgresql-clien
 RUN cpan TAP::Parser::SourceHandler::pgTAP
 
 # install pgtap
-ENV PGTAP_VERSION v0.96.0
+ENV PGTAP_VERSION v0.97.0
 RUN git clone git://github.com/theory/pgtap.git \
     && cd pgtap && git checkout tags/$PGTAP_VERSION \
     && make
