@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.6
 MAINTAINER Andreas Wålm <andreas@walm.net>
 MAINTAINER Ludovic Claude <ludovic.claude@chuv.ch>
 
