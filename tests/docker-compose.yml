@@ -18,7 +18,7 @@ services:
       - TARGETS=test_db:5432
 
   db_setup:
-    image: "hbpmip/woken-db-setup:1.0.1"
+    image: "hbpmip/woken-db-setup:1.0.2"
     container_name: "woken-db-setup"
     environment:
       - FLYWAY_DBMS=postgresql
