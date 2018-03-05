@@ -6,7 +6,7 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 
-ENV DOCKERIZE_VERSION=v0.5.0
+ENV DOCKERIZE_VERSION=v0.6.0
 
 RUN apk update && apk add bash curl openssl ca-certificates git postgresql-client postgresql-dev \
       build-base make perl perl-dev \
