@@ -9,7 +9,9 @@ if pgrep -lf sshuttle > /dev/null ; then
   exit 1
 fi
 
-if groups $USER | grep &>/dev/null '\bdocker\b'; then
+if [ $NO_SUDO ]; then
+  CAPTAIN="captain"
+elif groups $USER | grep &>/dev/null '\bdocker\b'; then
   CAPTAIN="captain"
 else
   CAPTAIN="sudo captain"
@@ -53,8 +55,7 @@ select_part() {
 git pull --tags
 # Look for a version tag in Git. If not found, ask the user to provide one
 [ $(git tag --points-at HEAD | wc -l) == 1 ] || (
-  latest_version=$(git describe --abbrev=00 || \
-    (bumpversion --dry-run --list patch | grep current_version | sed -r s,"^.*=",,) || echo '0.0.1')
+  latest_version=$(bumpversion --dry-run --list patch | grep current_version | sed -r s,"^.*=",, || echo '0.0.1')
   echo
   echo "Current commit has not been tagged with a version. Latest known version is $latest_version."
   echo
@@ -101,11 +102,11 @@ WORKSPACE=$(get_script_dir)
 
 # Push on Docker Hub
 #  WARNING: Requires captain 1.1.0 to push user tags
-BUILD_DATE=$(date --iso-8601=seconds) \
+BUILD_DATE=$(date -Iseconds) \
   VCS_REF=$updated_version \
   VERSION=$updated_version \
   WORKSPACE=$WORKSPACE \
-  $CAPTAIN push pgtap --branch-tags=false --commit-tags=false --tag $updated_version
+  $CAPTAIN push target_image --branch-tags=false --commit-tags=false --tag $updated_version
 
 # Notify on slack
 sed "s/USER/${USER^}/" $WORKSPACE/slack.json > $WORKSPACE/.slack.json

@@ -1,4 +1,4 @@
-pgtap:
+target_image:
   build: Dockerfile
   image: hbpmip/pgtap
   pre:
