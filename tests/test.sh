@@ -24,6 +24,16 @@ else
   DOCKER_COMPOSE="sudo docker-compose"
 fi
 
+function _cleanup() {
+  local error_code="$?"
+  echo "Stopping the containers..."
+  $DOCKER_COMPOSE stop | true
+  $DOCKER_COMPOSE down | true
+  $DOCKER_COMPOSE rm -f > /dev/null 2> /dev/null | true
+  exit $error_code
+}
+trap _cleanup EXIT INT TERM
+
 $DOCKER_COMPOSE up -d test_db
 $DOCKER_COMPOSE run wait_dbs
 $DOCKER_COMPOSE run db_setup
@@ -33,6 +43,4 @@ echo "Test pgtap"
 $DOCKER_COMPOSE run db_check
 
 # Cleanup
-echo
-$DOCKER_COMPOSE stop
-$DOCKER_COMPOSE rm -f > /dev/null 2> /dev/null
+_cleanup

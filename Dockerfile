@@ -8,7 +8,7 @@ ARG VERSION
 
 ENV DOCKERIZE_VERSION=v0.6.1
 
-RUN apk update && apk add bash curl openssl git postgresql-client postgresql-dev \
+RUN apk add --no-cache --update ca-certificates wget shadow jq bash \
       build-base make perl perl-dev \
     && wget -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz \
     && tar -C /usr/local/bin -xzvf /tmp/dockerize.tar.gz \
