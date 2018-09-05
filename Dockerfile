@@ -18,7 +18,7 @@ RUN apk add --no-cache --update wget shadow jq bash git openssl \
 RUN cpan TAP::Parser::SourceHandler::pgTAP
 
 # install pgtap
-ENV PGTAP_VERSION v0.96.0
+ENV PGTAP_VERSION v0.98.0
 RUN git clone git://github.com/theory/pgtap.git \
     && cd pgtap && git checkout tags/$PGTAP_VERSION \
     && make
