@@ -35,7 +35,8 @@ echo
 
 echo "Running tests: $TESTS"
 # install pgtap
-PGPASSWORD=$PASSWORD psql -h $HOST -p $PORT -d $DATABASE -U $USER -f /pgtap/sql/pgtap.sql > /dev/null 2>&1
+PGPASSWORD=$PASSWORD psql -h $HOST -p $PORT -d $DATABASE -U $USER -f /pgtap/sql/pgtap.sql
+# > /dev/null 2>&1
 
 rc=$?
 # exit if pgtap failed to install
