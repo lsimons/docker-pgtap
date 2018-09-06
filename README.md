@@ -45,6 +45,8 @@ Environment variables:
 * PASSWORD=""
 * `TESTS="/test/*.sql"`
 
+A full demonstration can be found at [harobed/poc-postgresql-pgTAP](https://github.com/harobed/poc-postgresql-pgTAP)
+
 ## Build
 
 Run: `./build.sh`
