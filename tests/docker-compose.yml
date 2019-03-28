@@ -32,7 +32,7 @@ services:
 
   # Use the latest image built as this is what is under test
   db_check:
-    image: "hbpmip/pgtap:latest"
+    build: ..
     container_name: "db-check"
     environment:
       - HOST=db

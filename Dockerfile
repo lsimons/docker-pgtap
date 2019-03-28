@@ -18,7 +18,7 @@ RUN apk add --no-cache --update curl wget postgresql-client postgresql-dev git o
 RUN cpan TAP::Parser::SourceHandler::pgTAP
 
 # install pgtap
-ENV PGTAP_VERSION v0.98.0
+ENV PGTAP_VERSION v1.0.0
 RUN git clone git://github.com/theory/pgtap.git \
     && cd pgtap && git checkout tags/$PGTAP_VERSION \
     && make
