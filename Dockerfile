@@ -1,10 +1,6 @@
-FROM alpine:3.7
+FROM alpine:3.9
 MAINTAINER Andreas Wålm <andreas@walm.net>
 MAINTAINER Ludovic Claude <ludovic.claude@chuv.ch>
-
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
 
 ENV DOCKERIZE_VERSION=v0.6.1
 
@@ -12,6 +8,8 @@ RUN apk add --no-cache --update curl wget postgresql-client postgresql-dev git o
       build-base make perl perl-dev \
     && wget -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz \
     && tar -C /usr/local/bin -xzvf /tmp/dockerize.tar.gz \
+    && chown root:root /usr/local/bin/dockerize \
+    && apk del wget \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # install pg_prove
@@ -37,6 +35,10 @@ ENV DATABASE="" \
 
 ENTRYPOINT ["/test.sh"]
 CMD [""]
+
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="hbpmip/pgtap" \

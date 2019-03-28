@@ -1,9 +1,0 @@
-target_image:
-  build: Dockerfile
-  image: hbpmip/pgtap
-  pre:
-    - echo "Preparing pgtap"
-  post:
-    - echo "Finished building pgtap"
-  test:
-    - ./tests/test.sh
