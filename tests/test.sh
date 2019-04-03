@@ -34,6 +34,7 @@ function _cleanup() {
 }
 trap _cleanup EXIT INT TERM
 
+$DOCKER_COMPOSE build
 $DOCKER_COMPOSE up -d test_db
 $DOCKER_COMPOSE run wait_dbs
 $DOCKER_COMPOSE run db_setup
