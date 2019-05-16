@@ -5,7 +5,7 @@ MAINTAINER Ludovic Claude <ludovic.claude@chuv.ch>
 ENV DOCKERIZE_VERSION=v0.6.1
 
 RUN apk add --no-cache --update curl wget postgresql-client postgresql-dev git openssl \
-      build-base make perl perl-dev \
+      build-base make perl perl-dev bash \
     && wget -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz \
     && tar -C /usr/local/bin -xzvf /tmp/dockerize.tar.gz \
     && chown root:root /usr/local/bin/dockerize \
