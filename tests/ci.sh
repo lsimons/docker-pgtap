@@ -28,22 +28,15 @@ get_script_dir () {
 cd "$(get_script_dir)"
 
 if [[ $NO_SUDO || -n "$CIRCLECI" ]]; then
-  DOCKER_COMPOSE="docker-compose"
-elif groups $USER | grep &>/dev/null '\bdocker\b'; then
-  DOCKER_COMPOSE="docker-compose"
+  DOCKER="docker"
+  DOCKER_COMPOSE="docker-compose -f docker-compose-ci.yml"
+elif groups "$USER" | grep &>/dev/null '\bdocker\b'; then
+  DOCKER="docker"
+  DOCKER_COMPOSE="docker-compose -f docker-compose-ci.yml"
 else
-  DOCKER_COMPOSE="sudo docker-compose"
+  DOCKER="sudo docker"
+  DOCKER_COMPOSE="sudo docker-compose -f docker-compose-ci.yml"
 fi
-
-function _cleanup() {
-  local error_code="$?"
-  echo "Stopping the containers..."
-  $DOCKER_COMPOSE stop | true
-  $DOCKER_COMPOSE down | true
-  $DOCKER_COMPOSE rm -f > /dev/null 2> /dev/null | true
-  exit $error_code
-}
-trap _cleanup EXIT INT TERM
 
 $DOCKER_COMPOSE build
 $DOCKER_COMPOSE up -d test_db
@@ -54,5 +47,10 @@ echo
 echo "Test pgtap"
 $DOCKER_COMPOSE run db_check
 
-# Cleanup
-_cleanup
+exit_code="$($DOCKER inspect tests_db_check_1 --format='{{.State.ExitCode}}')"
+
+if [[ "$exit_code" != "0" ]]; then
+  echo "Integration tests failed!"
+  exit 1
+fi
+echo "[OK] All integration tests passed."
