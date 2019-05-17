@@ -1,7 +1,8 @@
 #!/bin/sh
 
-function usage() { echo "Usage: $0 -h host -d database -p port -u username -w password -t 'tests/*.sql'" 1>&2; exit 1; }
+function usage() { echo "Usage: $0 -h host -d database -p port -u username -w password -t 'tests/*.sql' [-v]" 1>&2; exit 1; }
 
+VERBOSE=0
 while getopts d:h:p:u:w:b:n:t: OPTION
 do
   case $OPTION in
@@ -23,6 +24,9 @@ do
     t)
       TESTS=$OPTARG
       ;;
+    v)
+      VERBOSE=1
+      ;;
     H)
       usage
       ;;
@@ -35,8 +39,11 @@ echo
 
 echo "Running tests: $TESTS"
 # install pgtap
-PGPASSWORD=$PASSWORD psql -h $HOST -p $PORT -d $DATABASE -U $USER -f /pgtap/sql/pgtap.sql
-# > /dev/null 2>&1
+if [[ $VERBOSE == 1 ]] ; then
+  PGPASSWORD=$PASSWORD psql -h $HOST -p $PORT -d $DATABASE -U $USER -f /pgtap/sql/pgtap.sql
+else
+  PGPASSWORD=$PASSWORD psql -h $HOST -p $PORT -d $DATABASE -U $USER -f /pgtap/sql/pgtap.sql > /dev/null 2>&1
+fi
 rc=$?
 
 # exit if pgtap failed to install
