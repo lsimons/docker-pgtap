@@ -44,6 +44,7 @@ Environment variables:
 * USER="postgres"
 * PASSWORD=""
 * `TESTS="/test/*.sql"`
+* VERBOSE=0
 
 A full demonstration can be found at [harobed/poc-postgresql-pgTAP](https://github.com/harobed/poc-postgresql-pgTAP)
 
