@@ -45,9 +45,9 @@ $DOCKER_COMPOSE run db_setup
 
 echo
 echo "Test pgtap"
-$DOCKER_COMPOSE run db_check
+$DOCKER_COMPOSE run --name db_check db_check
 
-exit_code="$($DOCKER inspect tests_db_check_1 --format='{{.State.ExitCode}}')"
+exit_code="$($DOCKER inspect db_check --format='{{.State.ExitCode}}')"
 
 if [[ "$exit_code" != "0" ]]; then
   echo "Integration tests failed!"

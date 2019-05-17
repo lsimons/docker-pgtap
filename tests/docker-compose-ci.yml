@@ -35,7 +35,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: "db-check"
+    container_name: "db_check"
     environment:
       - HOST=db
       - PORT=5432
