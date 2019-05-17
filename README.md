@@ -18,7 +18,7 @@ This docker image is available as an automated build on [the docker registry hub
 
 
 ```console
-$ docker run hbpmip/pgtap:1.0.0-1
+$ docker run hbpmip/pgtap:1.0.0-2
 ```
 
 ## How to use this image
@@ -33,7 +33,7 @@ then fill the database with tables and data, using something you want to test.
 ### Execute the tests
 
 ```console
-$ docker run -i -t --rm --name pgtap --link db-under-test:db -e PASSWORD=postgres -v /local/folder/with/tests/:/test hbpmip/pgtap:1.0.0-1
+$ docker run -i -t --rm --name pgtap --link db-under-test:db -e PASSWORD=postgres -v /local/folder/with/tests/:/test hbpmip/pgtap:1.0.0-2
 ```
 
 Environment variables:
