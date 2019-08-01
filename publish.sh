@@ -25,13 +25,7 @@ get_script_dir () {
 
 WORKSPACE=$(get_script_dir)
 
-if [ $NO_SUDO ]; then
-  DOCKER="docker"
-elif groups "$USER" | grep &>/dev/null '\bdocker\b'; then
-  DOCKER="docker"
-else
-  DOCKER="sudo docker"
-fi
+DOCKER="docker"
 
 tests=1
 for param in "$@"
