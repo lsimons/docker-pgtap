@@ -1,6 +1,5 @@
-FROM alpine:3.9
-MAINTAINER Andreas Wålm <andreas@walm.net>
-MAINTAINER Ludovic Claude <ludovic.claude@chuv.ch>
+FROM alpine:3.10
+LABEL maintainer="Leo Simons <mail at leosimons dot com>"
 
 ENV DOCKERIZE_VERSION=v0.6.1
 

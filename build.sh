@@ -18,13 +18,7 @@ get_script_dir () {
 
 cd "$(get_script_dir)"
 
-if [[ "$NO_SUDO" || -n "$CIRCLECI" ]]; then
-  DOCKER="docker"
-elif groups "$USER" | grep &>/dev/null '\bdocker\b'; then
-  DOCKER="docker"
-else
-  DOCKER="sudo docker"
-fi
+DOCKER="docker"
 
 source ./.dockerimage
 VCS_REF=$(git describe --tags --dirty)

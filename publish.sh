@@ -25,11 +25,6 @@ get_script_dir () {
 
 WORKSPACE=$(get_script_dir)
 
-if pgrep -lf sshuttle > /dev/null ; then
-  echo "sshuttle detected. Please close this program as it messes with networking and prevents builds inside Docker to work"
-  exit 1
-fi
-
 if [ $NO_SUDO ]; then
   DOCKER="docker"
 elif groups "$USER" | grep &>/dev/null '\bdocker\b'; then
@@ -126,9 +121,3 @@ $DOCKER push "$IMAGE:$updated_version"
 
 git push
 git push --tags
-
-# Notify on slack
-sed "s/USER/${USER^}/" $WORKSPACE/slack.json > $WORKSPACE/.slack.json
-sed -i.bak "s/VERSION/$updated_version/" $WORKSPACE/.slack.json
-curl -k -X POST --data-urlencode payload@$WORKSPACE/.slack.json https://hbps1.chuv.ch/slack/dev-activity
-rm -f $WORKSPACE/.slack.json $WORKSPACE/.slack.json.bak

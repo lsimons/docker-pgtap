@@ -1,10 +1,12 @@
-[![CHUV](https://img.shields.io/badge/CHUV-LREN-AF4C64.svg)](https://www.unil.ch/lren/en/home.html) [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/LREN-CHUV/docker-pgtap/blob/master/LICENSE) [![DockerHub](https://img.shields.io/badge/docker-hbpmip%2Fpgtap-008bb8.svg)](https://hub.docker.com/r/hbpmip/pgtap/) [![ImageVersion](https://images.microbadger.com/badges/version/hbpmip/pgtap.svg)](https://hub.docker.com/r/hbpmip/pgtap/tags "hbpmip/pgtap image tags") [![ImageLayers](https://images.microbadger.com/badges/image/hbpmip/pgtap.svg)](https://microbadger.com/#/images/hbpmip/pgtap "hbpmip/pgtap on microbadger") [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6005163c7ab440cd8f0841a95c097517)](https://www.codacy.com/app/hbp-mip/docker-pgtap?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=LREN-CHUV/docker-pgtap&amp;utm_campaign=Badge_Grade) [![CircleCI](https://circleci.com/gh/LREN-CHUV/docker-pgtap/tree/master.svg?style=svg)](https://circleci.com/gh/LREN-CHUV/docker-pgtap/tree/master)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/LREN-CHUV/docker-pgtap/blob/master/LICENSE) [![DockerHub](https://img.shields.io/badge/docker-hbpmip%2Fpgtap-008bb8.svg)](https://hub.docker.com/r/lsimons/pgtap/) [![ImageVersion](https://images.microbadger.com/badges/version/lsimons/pgtap.svg)](https://hub.docker.com/r/lsimons/pgtap/tags "lsimons/pgtap image tags")
 
 # docker-pgtap
 
 pgTAP - Unit testing for PostgreSQL.
 
 This is a docker image that contains pgTAP.
+This is a fork of https://github.com/LREN-CHUV/docker-pgtap .
+Use upstream unless you know you need the changes in this image.
 
 ## About pgTAP
 
@@ -14,11 +16,11 @@ From: [pgTAP: Unit testing for PostgreSQL](http://pgtap.org/)
 
 ## Install
 
-This docker image is available as an automated build on [the docker registry hub](https://registry.hub.docker.com/u/hbpmip/pgtap/), so using it is as simple as running:
+This docker image is available as an automated build on [the docker registry hub](https://registry.hub.docker.com/u/lsimons/pgtap/), so using it is as simple as running:
 
 
 ```console
-$ docker run hbpmip/pgtap:1.0.0-2
+$ docker run lsimons/pgtap
 ```
 
 ## How to use this image
@@ -33,7 +35,7 @@ then fill the database with tables and data, using something you want to test.
 ### Execute the tests
 
 ```console
-$ docker run -i -t --rm --name pgtap --link db-under-test:db -e PASSWORD=postgres -v /local/folder/with/tests/:/test hbpmip/pgtap:1.0.0-2
+$ docker run -i -t --rm --name pgtap --link db-under-test:db -e PASSWORD=postgres -v /local/folder/with/tests/:/test lsimons/pgtap
 ```
 
 Environment variables:
